@@ -7,7 +7,7 @@ import seaborn as sns
 sns.set(style="whitegrid")
 
 # Load the dataset
-day_data = pd.read_csv('data/day.csv')
+day_data = pd.read_csv('day.csv')
 
 # Filter Data by working day or holiday
 def filter_data(day_data, working_day_filter, season_filter):
