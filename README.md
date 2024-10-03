@@ -42,6 +42,7 @@ The analysis process covers the following:
 The project relies on the following Python libraries:
 - Pandas: Data manipulation and analysis.
 - Numpy: For efficient numerical calculations.
+- Seaborn: For advanced statistical visualizations.
 - Matplotlib & Seaborn: For creating visualizations and plots.
 - Streamlit: To create and deploy the dashboard.
 
