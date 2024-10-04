@@ -24,10 +24,19 @@ def plot_bike_usage(day_data):
     ax.set_title('Total Bike Rentals Over Time')
     
     # Set date format on x-axis and limit the number of ticks
-    ax.xaxis.set_major_locator(mdates.MonthLocator(interval=3))  # Set interval to 1 month
+    ax.xaxis.set_major_locator(mdates.MonthLocator(interval=3))  # Set interval to 3 months
     ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m'))   # Format the date to Year-Month
     plt.xticks(rotation=45)
     st.pyplot(fig)
+
+    # Insight for total bike rentals over time
+    st.write("""
+    **Insight:** 
+    - Terdapat tren peningkatan jumlah penyewaan sepeda seiring berjalannya waktu, 
+    menunjukkan bahwa popularitas layanan ini meningkat.
+    - Perhatikan juga adanya fluktuasi musiman yang mungkin berhubungan dengan cuaca 
+    atau peristiwa khusus.
+    """)
 
     # Plot average rentals by day of the week
     st.write("### Average Bike Rentals by Day of the Week")
@@ -39,6 +48,15 @@ def plot_bike_usage(day_data):
     ax.set_title('Average Bike Rentals by Day of the Week')
     st.pyplot(fig)
 
+    # Insight for average rentals by day of the week
+    st.write("""
+    **Insight:**
+    - Rata-rata penyewaan sepeda lebih tinggi pada hari kerja dibandingkan hari libur, 
+    menunjukkan bahwa layanan ini banyak digunakan oleh komuter.
+    - Hari Senin dan Jumat menunjukkan jumlah penyewaan yang lebih tinggi, 
+    kemungkinan terkait dengan aktivitas kerja.
+    """)
+
     # Weather analysis
     st.write("### Average Bike Rentals by Weather Condition")
     weather_counts = day_data.groupby('weathersit')['cnt'].mean()
@@ -49,6 +67,15 @@ def plot_bike_usage(day_data):
     ax.set_title('Average Bike Rentals by Weather Condition')
     st.pyplot(fig)
 
+    # Insight for average rentals by weather condition
+    st.write("""
+    **Insight:**
+    - Penyewaan sepeda paling tinggi pada kondisi cuaca yang jelas (1), 
+    yang menunjukkan bahwa cuaca baik sangat berpengaruh pada keputusan pengguna.
+    - Cuaca berkabut dan hujan ringan (2 dan 3) menyebabkan penurunan signifikan dalam 
+    jumlah penyewaan.
+    """)
+
     # Histogram of bike rentals
     st.write("### Distribution of Total Bike Rentals")
     fig, ax = plt.subplots(figsize=(8, 6))
@@ -57,6 +84,15 @@ def plot_bike_usage(day_data):
     ax.set_ylabel('Frequency')
     ax.set_title('Distribution of Total Bike Rentals')
     st.pyplot(fig)
+
+    # Insight for distribution of total bike rentals
+    st.write("""
+    **Insight:**
+    - Distribusi penyewaan sepeda menunjukkan bahwa sebagian besar hari memiliki 
+    tingkat penyewaan yang sedang, tetapi ada beberapa hari dengan permintaan yang sangat tinggi.
+    - Ini menunjukkan bahwa ada faktor eksternal yang berkontribusi pada hari-hari 
+    dengan permintaan yang sangat tinggi, seperti acara khusus atau cuaca yang sangat baik.
+    """)
 
 # Main function
 def main():
