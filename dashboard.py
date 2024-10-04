@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
-import matplotlib.dates as mdates  # Import mdates untuk mengatur tanggal
+import matplotlib.dates as mdates  # Import mdates for date formatting
 
 # Set seaborn style for better visuals
 sns.set(style="whitegrid")
@@ -32,10 +32,10 @@ def plot_bike_usage(day_data):
     # Insight for total bike rentals over time
     st.write("""
     **Insight:** 
-    - Terdapat tren peningkatan jumlah penyewaan sepeda seiring berjalannya waktu, 
-    menunjukkan bahwa popularitas layanan ini meningkat.
-    - Perhatikan juga adanya fluktuasi musiman yang mungkin berhubungan dengan cuaca 
-    atau peristiwa khusus.
+    - There is a noticeable trend of increasing bike rentals over time, indicating 
+    that the popularity of this service is on the rise.
+    - Seasonal fluctuations may be observed, possibly related to weather or 
+    specific events.
     """)
 
     # Plot average rentals by day of the week
@@ -51,10 +51,10 @@ def plot_bike_usage(day_data):
     # Insight for average rentals by day of the week
     st.write("""
     **Insight:**
-    - Rata-rata penyewaan sepeda lebih tinggi pada hari kerja dibandingkan hari libur, 
-    menunjukkan bahwa layanan ini banyak digunakan oleh komuter.
-    - Hari Senin dan Jumat menunjukkan jumlah penyewaan yang lebih tinggi, 
-    kemungkinan terkait dengan aktivitas kerja.
+    - Average bike rentals are higher on weekdays compared to weekends, 
+    indicating that the service is popular among commuters.
+    - Mondays and Fridays show higher rental rates, likely correlated 
+    with work-related activities.
     """)
 
     # Weather analysis
@@ -70,10 +70,9 @@ def plot_bike_usage(day_data):
     # Insight for average rentals by weather condition
     st.write("""
     **Insight:**
-    - Penyewaan sepeda paling tinggi pada kondisi cuaca yang jelas (1), 
-    yang menunjukkan bahwa cuaca baik sangat berpengaruh pada keputusan pengguna.
-    - Cuaca berkabut dan hujan ringan (2 dan 3) menyebabkan penurunan signifikan dalam 
-    jumlah penyewaan.
+    - Bike rentals are highest under clear weather conditions (1), 
+    indicating that good weather significantly influences user decisions.
+    - Misty and light rain conditions (2 and 3) lead to a notable decrease in rentals.
     """)
 
     # Histogram of bike rentals
@@ -88,10 +87,10 @@ def plot_bike_usage(day_data):
     # Insight for distribution of total bike rentals
     st.write("""
     **Insight:**
-    - Distribusi penyewaan sepeda menunjukkan bahwa sebagian besar hari memiliki 
-    tingkat penyewaan yang sedang, tetapi ada beberapa hari dengan permintaan yang sangat tinggi.
-    - Ini menunjukkan bahwa ada faktor eksternal yang berkontribusi pada hari-hari 
-    dengan permintaan yang sangat tinggi, seperti acara khusus atau cuaca yang sangat baik.
+    - The distribution of bike rentals shows that most days have moderate rental 
+    levels, but there are a few days with exceptionally high demand.
+    - This suggests that external factors contribute to days with very high demand, 
+    such as special events or exceptionally good weather.
     """)
 
 # Main function
@@ -100,7 +99,19 @@ def main():
     
     # Display summary statistics
     st.write("## Summary Statistics")
-    st.write(day_data.describe())
+    summary_stats = day_data.describe()
+    st.write(summary_stats)
+
+    # Insight for summary statistics
+    st.write("""
+    **Insight:**
+    - The average daily bike rentals (`cnt`) are {:.2f}, with a maximum of 
+    {:.2f}. This indicates high potential usage on certain days.
+    - The variance and standard deviation of rentals (`cnt`) are quite large, 
+    indicating significant variability in bike usage from day to day.
+    - The `temp` (temperature) and `hum` (humidity) columns suggest that weather 
+    factors likely influence bike rental patterns.
+    """.format(summary_stats['cnt']['mean'], summary_stats['cnt']['max']))
 
     # Generate visualizations
     plot_bike_usage(day_data)
@@ -108,10 +119,13 @@ def main():
     # Analysis and Conclusion
     st.write("## Analysis and Insights")
     st.write("""
-    1. Bike usage tends to be higher on working days compared to holidays, indicating the service is popular among commuters.
+    1. Bike usage tends to be higher on working days compared to holidays, indicating 
+    the service is popular among commuters.
     2. Weekdays see a steadier bike rental trend, with slight peaks on weekends.
-    3. Weather plays a significant role in bike rentals, with clear weather (condition 1) showing the highest usage.
-    4. The distribution of total bike rentals shows that most days see moderate bike usage, with some high-demand days.
+    3. Weather plays a significant role in bike rentals, with clear weather 
+    (condition 1) showing the highest usage.
+    4. The distribution of total bike rentals shows that most days see moderate bike 
+    usage, with some high-demand days.
     """)
 
 # Run the main function
