@@ -1,8 +1,8 @@
-# Import libraries
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
+import matplotlib.dates as mdates  # Import mdates untuk mengatur tanggal
 
 # Set seaborn style for better visuals
 sns.set(style="whitegrid")
@@ -12,6 +12,9 @@ day_data = pd.read_csv('day.csv')
 
 # Function to visualize the results
 def plot_bike_usage(day_data):
+    # Convert 'dteday' to datetime format
+    day_data['dteday'] = pd.to_datetime(day_data['dteday'])
+
     # Plot total bike rentals over time
     st.write("### Total Bike Rentals Over Time")
     fig, ax = plt.subplots(figsize=(10, 6))
@@ -19,6 +22,10 @@ def plot_bike_usage(day_data):
     ax.set_xlabel('Date')
     ax.set_ylabel('Total Bike Rentals')
     ax.set_title('Total Bike Rentals Over Time')
+    
+    # Set date format on x-axis and limit the number of ticks
+    ax.xaxis.set_major_locator(mdates.MonthLocator(interval=1))  # Set interval to 1 month
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m'))   # Format the date to Year-Month
     plt.xticks(rotation=45)
     st.pyplot(fig)
 
