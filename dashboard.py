@@ -24,7 +24,7 @@ def plot_bike_usage(day_data):
     ax.set_title('Total Bike Rentals Over Time')
     
     # Set date format on x-axis and limit the number of ticks
-    ax.xaxis.set_major_locator(mdates.MonthLocator(interval=1))  # Set interval to 1 month
+    ax.xaxis.set_major_locator(mdates.MonthLocator(interval=3))  # Set interval to 1 month
     ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m'))   # Format the date to Year-Month
     plt.xticks(rotation=45)
     st.pyplot(fig)
