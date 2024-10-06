@@ -20,7 +20,7 @@ To explore the insights interactively, you can run the dashboard locally:
 ### 2. Install Dependencies
   The next step is to install all requiered dependencies
   '''bash
-  pip install -r requirement.txt
+  pip install -r requirements.txt
   '''
 ### 3. Run Dashboard with Streamlit
   Use the following command
